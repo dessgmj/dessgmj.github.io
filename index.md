@@ -1,2 +1,3 @@
-Welcome to my GitHub Pages
+Welcome to my github page.
+
 It just have some simple toy.

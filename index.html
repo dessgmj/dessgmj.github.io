@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>欢 迎 光 临</title>
     <!-- Tesseract.js 和 html5-qrcode 库 -->
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
@@ -50,13 +49,17 @@
             background: rgba(15, 25, 45, 0.55);
             backdrop-filter: blur(12px);
             border-radius: 2rem;
-            padding: 2.5rem 3rem;
+            padding: 2rem 2.5rem;
             text-align: center;
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(100, 150, 255, 0.2);
             border: 1px solid rgba(80, 180, 255, 0.3);
             animation: floatGlow 6s ease-in-out infinite;
             pointer-events: auto;
             transition: all 0.3s ease;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .glass-card:hover {
@@ -64,40 +67,107 @@
             box-shadow: 0 30px 55px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(100, 200, 255, 0.5);
         }
 
-        .neon-title {
+        /* 标题 灵 境 */
+        .brand-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #e0f2ff, #a0d0ff, #c5a3ff, #ffb3d9);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s ease infinite;
+            text-shadow: 0 0 12px rgba(100, 180, 255, 0.5);
+            white-space: nowrap;
+        }
+        .brand-title .title-main {
+            font-family: 'Fira Code', 'Segoe UI', monospace;
+        }
+        .brand-title .title-divider {
+            margin: 0 6px;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+        .brand-title .title-sub {
+            font-weight: 500;
+            font-size: 0.9em;
+            background: linear-gradient(145deg, #b3f0ff, #9f7aff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* 主时间显示 */
+        .main-time {
             font-size: 4rem;
             font-weight: 800;
-            letter-spacing: 0.1em;
+            font-family: 'Fira Code', 'Segoe UI', monospace;
+            letter-spacing: 0.05em;
             background: linear-gradient(135deg, #aaffff, #3a86ff, #c084fc, #f472b6);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: gradientShift 8s ease infinite, textGlitch 3s infinite;
+            animation: gradientShift 8s ease infinite;
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(0,255,255,0.3);
+        }
+
+        /* 时区选择器 */
+        .timezone-selector {
+            margin: 1rem 0 0.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 2rem;
+            padding: 0.3rem 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+        }
+        .timezone-selector label {
+            font-size: 0.7rem;
+            color: #ccf;
+            letter-spacing: 1px;
+        }
+        #timezoneSelect {
+            background: rgba(30, 40, 60, 0.8);
+            border: 1px solid rgba(100, 180, 255, 0.6);
+            color: #eef;
+            padding: 4px 8px;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            outline: none;
+            font-family: monospace;
+        }
+        #timezoneSelect option {
+            background: #0a0a2a;
         }
 
         .sub {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 400;
-            letter-spacing: 0.2rem;
+            letter-spacing: 0.15rem;
             color: rgba(220, 240, 255, 0.9);
             background: linear-gradient(120deg, rgba(100, 200, 255, 0.4), rgba(255, 255, 255, 0.1));
             display: inline-block;
-            padding: 0.4rem 1.2rem;
+            padding: 0.3rem 1rem;
             border-radius: 2rem;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             border: 1px solid rgba(100, 200, 255, 0.3);
         }
 
         .tech-tag {
-            margin-top: 1.5rem;
-            font-size: 0.75rem;
+            margin-top: 1.2rem;
+            font-size: 0.7rem;
             font-family: 'Fira Code', monospace;
             color: #88ccff;
             background: rgba(0, 0, 0, 0.4);
             display: inline-block;
-            padding: 0.4rem 1rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 2rem;
             border-left: 3px solid cyan;
         }
@@ -113,11 +183,6 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        @keyframes textGlitch {
-            0%,100% { text-shadow: 0 0 5px cyan; }
-            96% { text-shadow: -2px 0 red, 2px 0 blue; }
-            97% { text-shadow: 2px 0 red, -2px 0 blue; }
-        }
 
         /* ========= 互动菜单面板 (右侧悬浮) ========= */
         .control-panel {
@@ -129,7 +194,7 @@
             backdrop-filter: blur(16px);
             border-radius: 24px;
             padding: 1rem 1.2rem;
-            width: 260px;
+            width: 270px;
             border: 1px solid rgba(100, 180, 255, 0.4);
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             transition: 0.3s;
@@ -215,13 +280,12 @@
             box-shadow: 0 0 8px #3a86ff;
         }
 
-        /* 预留功能区域 */
+        /* 智能扩展区域 */
         .future-section {
             margin-top: 18px;
             padding-top: 12px;
             border-top: 1px dashed rgba(255,255,255,0.2);
         }
-        /* 让“智能扩展”标题变得明亮醒目 */
         .future-section label {
             display: block;
             font-size: 0.75rem;
@@ -258,9 +322,168 @@
         }
         .info-note {
             font-size: 0.65rem;
-            color: #cceeff;      /* 原 #aac 太暗，改为亮蓝白 */
+            color: #cceeff;
             margin-top: 10px;
             text-align: center;
+        }
+
+        /* ========= 左下角卡片：未来计划 & 推荐功能 ========= */
+        .roadmap-card {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 110;
+            width: 290px;
+            max-width: calc(100% - 40px);
+            background: rgba(12, 22, 38, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(100, 200, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            padding: 1rem 1.1rem;
+            transition: all 0.2s ease;
+            pointer-events: auto;
+            font-size: 0.8rem;
+            color: #eef5ff;
+        }
+        .roadmap-card:hover {
+            border-color: rgba(150, 220, 255, 0.7);
+            box-shadow: 0 0 18px rgba(70, 150, 255, 0.3);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,240,0.2);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            cursor: pointer;
+        }
+        .card-header h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #b9f2ff, #9b6eff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        .card-toggle {
+            font-size: 1rem;
+            color: #8cf;
+            transition: transform 0.2s;
+        }
+        .roadmap-content {
+            max-height: 360px;
+            overflow-y: auto;
+            transition: max-height 0.25s ease;
+        }
+        .roadmap-content.collapsed {
+            max-height: 0;
+            overflow: hidden;
+        }
+        .plan-list {
+            margin: 8px 0 12px 0;
+            padding-left: 1.2rem;
+        }
+        .plan-list li {
+            margin: 6px 0;
+            font-size: 0.75rem;
+            color: #ccf2ff;
+            list-style-type: '✨ ';
+        }
+        .rec-tools {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 1rem;
+            padding: 8px 10px;
+            margin: 12px 0 8px 0;
+        }
+        .rec-title {
+            font-size: 0.7rem;
+            color: #ffdd99;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .todo-area {
+            margin-top: 10px;
+        }
+        .todo-input-group {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .todo-input {
+            flex: 1;
+            background: rgba(30, 40, 60, 0.7);
+            border: 1px solid #5f9eff;
+            border-radius: 40px;
+            padding: 6px 12px;
+            color: white;
+            font-size: 0.7rem;
+            outline: none;
+        }
+        .todo-add-btn {
+            background: rgba(100, 150, 255, 0.6);
+            border: none;
+            border-radius: 40px;
+            padding: 0 12px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .todo-add-btn:hover {
+            background: #3a86ff;
+        }
+        .todo-list {
+            list-style: none;
+            max-height: 130px;
+            overflow-y: auto;
+            margin-top: 6px;
+        }
+        .todo-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.08);
+            margin: 6px 0;
+            padding: 5px 10px;
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            word-break: break-word;
+        }
+        .todo-del {
+            background: none;
+            border: none;
+            color: #ffa098;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 8px;
+            opacity: 0.7;
+        }
+        .todo-del:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .rec-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 5px;
+        }
+        .rec-badge span {
+            background: rgba(80, 130, 200, 0.3);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.65rem;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        .divider-light {
+            height: 1px;
+            background: rgba(255,255,200,0.15);
+            margin: 8px 0;
         }
 
         /* ========= 二维码扫描模态框 ========= */
@@ -351,7 +574,7 @@
             margin-bottom: 15px;
             border: 1px dashed #8af;
         }
-        #qr-file-input {
+        #qr-file-input, #ocr-file-input {
             display: none;
         }
         .camera-box {
@@ -385,7 +608,6 @@
             margin-right: 8px;
             cursor: pointer;
         }
-        /* OCR 样式 */
         .ocr-url-input-group {
             display: flex;
             gap: 8px;
@@ -410,9 +632,6 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .ocr-url-btn:hover {
-            background: rgba(58,134,255,1);
-        }
         .ocr-progress {
             margin: 10px 0;
             height: 4px;
@@ -436,20 +655,24 @@
         }
 
         @media (max-width: 640px) {
-            .control-panel { width: 240px; right: 12px; top: 12px; padding: 0.8rem; }
-            .neon-title { font-size: 2.2rem; }
-            .glass-card { padding: 1.5rem; }
+            .control-panel { width: 250px; right: 12px; top: 12px; padding: 0.8rem; }
+            .main-time { font-size: 2.2rem; }
+            .glass-card { padding: 1.2rem 1.5rem; min-width: 280px; }
             .qr-container { width: 95%; padding: 1rem; }
+            .roadmap-card { width: 260px; bottom: 12px; left: 12px; padding: 0.8rem; }
+            .timezone-selector label { font-size: 0.65rem; }
+            #timezoneSelect { font-size: 0.7rem; }
+            .brand-title { font-size: 1.3rem; white-space: normal; }
         }
         .version-tip {
             position: fixed;
             bottom: 12px;
-            left: 16px;
+            right: 16px;
             z-index: 100;
             font-size: 10px;
-            color: rgba(150,180,255,0.5);
+            color: rgba(150,180,255,0.6);
             background: rgba(0,0,0,0.3);
-            padding: 2px 8px;
+            padding: 2px 10px;
             border-radius: 20px;
             pointer-events: none;
             font-family: monospace;
@@ -462,13 +685,32 @@
 
     <div class="content">
         <div class="glass-card">
-            <div class="neon-title">✦ 灵境 ✦</div>
-            <div class="sub">// 粒子 · 可控幻域</div>
-            <div class="tech-tag">⚡ 实时互动</div>
+            <!-- 标题：灵境-->
+            <div class="brand-title">
+                <span class="title-main">灵 境</span>
+            </div>
+            <div class="main-time" id="mainClock">--:--:--</div>
+            <div class="timezone-selector">
+                <label>🌍 时区 / 城市</label>
+                <select id="timezoneSelect">
+                    <option value="auto">🔄 自动检测 (本地)</option>
+                    <option value="Asia/Shanghai">🇨🇳 北京 (UTC+8)</option>
+                    <option value="Asia/Tokyo">🇯🇵 东京 (UTC+9)</option>
+                    <option value="America/New_York">🇺🇸 纽约 (UTC-5/4)</option>
+                    <option value="Europe/London">🇬🇧 伦敦 (UTC+0/1)</option>
+                    <option value="Europe/Paris">🇫🇷 巴黎 (UTC+1/2)</option>
+                    <option value="Australia/Sydney">🇦🇺 悉尼 (UTC+10/11)</option>
+                    <option value="Asia/Dubai">🇦🇪 迪拜 (UTC+4)</option>
+                    <option value="America/Los_Angeles">🇺🇸 洛杉矶 (UTC-8/7)</option>
+                    <option value="UTC">🌐 UTC (协调世界时)</option>
+                </select>
+            </div>
+            <div class="sub">// 粒子 · 时空幻域</div>
+            <div class="tech-tag">⚡ 实时互动 · 全球时钟</div>
         </div>
     </div>
 
-    <!-- 互动菜单 -->
+    <!-- 互动菜单右侧 -->
     <div class="control-panel" id="controlPanel">
         <div class="panel-header" id="panelHeader">
             <h3>🌀 控制中枢</h3>
@@ -502,30 +744,59 @@
             </div>
         </div>
     </div>
-    <div class="version-tip">⚙️ 动态扩展</div>
+    <div class="version-tip">⚙️ 动态扩展 · 时空灵境</div>
 
-    <!-- 二维码扫描模态框 -->
+    <!-- 左下角：未来计划 & 推荐功能 -->
+    <div class="roadmap-card" id="roadmapCard">
+        <div class="card-header" id="roadmapHeader">
+            <h4>📌 未来计划 & 灵感推荐</h4>
+            <span class="card-toggle" id="roadmapToggle">▼</span>
+        </div>
+        <div class="roadmap-content" id="roadmapContent">
+            <ul class="plan-list">
+                <li><strong>AI 对话引擎</strong> — 接入大模型，语音交互</li>
+                <li><strong>3D 粒子宇宙</strong> — Three.js 星系视觉升级</li>
+                <li><strong>数据仪表板</strong> — 实时分析/图表可视化</li>
+                <li><strong>跨平台同步</strong> — 云端配置/待办同步</li>
+				<li><strong>游戏开发</strong> — 直播</li>
+            </ul>
+            <div class="rec-tools">
+                <div class="rec-title">✅ 极简待办 (推荐功能演示)</div>
+                <div class="todo-area">
+                    <div class="todo-input-group">
+                        <input type="text" id="todoInput" class="todo-input" placeholder="写一个任务...">
+                        <button id="addTodoBtn" class="todo-add-btn">➕ 添加</button>
+                    </div>
+                    <ul class="todo-list" id="todoList">
+                        <li>✨ 探索粒子特效 <button class="todo-del">✖</button></li>
+                        <li>🌍 体验全球时钟 <button class="todo-del">✖</button></li>
+                    </ul>
+                </div>
+                <div class="rec-badge">
+                    <span>🎵 音乐可视化</span>
+                    <span>🌦️ 天气卡片</span>
+                    <span>📝 云端笔记</span>
+                    <span>💬 留言弹幕墙</span>
+                </div>
+                <div class="info-note" style="margin-top:6px; font-size:0.6rem;">💡 推荐功能持续迭代中</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 二维码模态框 (完整结构) -->
     <div id="qrModal" class="qr-modal">
         <div class="qr-container">
-            <div class="qr-header">
-                <h3>🔍 二维码扫描</h3>
-                <span class="close-modal" id="closeQrModal">&times;</span>
-            </div>
+            <div class="qr-header"><h3>🔍 二维码扫描</h3><span class="close-modal" id="closeQrModal">&times;</span></div>
             <div class="tab-bar">
                 <button class="tab-btn active" data-tab="file">📁 上传图片</button>
                 <button class="tab-btn" data-tab="camera">📷 实时摄像头</button>
             </div>
             <div class="tab-pane active" id="fileTab">
-                <label class="file-input-label">
-                    📂 点击选择二维码图片
-                    <input type="file" id="qr-file-input" accept="image/*">
-                </label>
+                <label class="file-input-label">📂 点击选择二维码图片<input type="file" id="qr-file-input" accept="image/*"></label>
                 <div id="file-result" class="qr-result">等待识别...</div>
             </div>
             <div class="tab-pane" id="cameraTab">
-                <div class="camera-box">
-                    <div id="qr-camera-reader"></div>
-                </div>
+                <div class="camera-box"><div id="qr-camera-reader"></div></div>
                 <div>
                     <button id="startCameraBtn" class="start-camera-btn">📸 启动摄像头</button>
                     <button id="stopCameraBtn" class="stop-camera-btn" style="display:none;">⏹️ 停止扫描</button>
@@ -535,42 +806,30 @@
         </div>
     </div>
 
-    <!-- OCR 模态框 (新增) -->
+    <!-- OCR模态框 (完整结构) -->
     <div id="ocrModal" class="qr-modal">
         <div class="qr-container">
-            <div class="qr-header">
-                <h3>📖 图片文字识别 (OCR)</h3>
-                <span class="close-modal" id="closeOcrModal">&times;</span>
-            </div>
+            <div class="qr-header"><h3>📖 图片文字识别 (OCR)</h3><span class="close-modal" id="closeOcrModal">&times;</span></div>
             <div class="tab-bar">
                 <button class="tab-btn active" data-ocr-tab="upload">📤 上传图片</button>
                 <button class="tab-btn" data-ocr-tab="url">🔗 图片链接</button>
             </div>
-            <!-- 上传图片 Tab -->
             <div class="tab-pane active" id="ocrUploadTab">
-                <label class="file-input-label">
-                    📂 点击选择图片 (支持中文/英文识别)
-                    <input type="file" id="ocr-file-input" accept="image/*">
-                </label>
-                <div class="ocr-progress" id="ocrProgress">
-                    <div class="ocr-progress-bar" id="ocrProgressBar"></div>
-                </div>
+                <label class="file-input-label">📂 点击选择图片 (支持中文/英文)<input type="file" id="ocr-file-input" accept="image/*"></label>
+                <div class="ocr-progress" id="ocrProgress"><div class="ocr-progress-bar" id="ocrProgressBar"></div></div>
                 <div id="ocr-result" class="qr-result">
-                    <div style="color:#8af; margin-bottom:8px;">📝 识别结果</div>
+                    <div>📝 识别结果</div>
                     <div id="ocr-result-text" class="ocr-result-text">等待识别...</div>
                 </div>
             </div>
-            <!-- 图片链接 Tab -->
             <div class="tab-pane" id="ocrUrlTab">
                 <div class="ocr-url-input-group">
                     <input type="text" id="ocr-url-input" class="ocr-url-input" placeholder="输入图片URL地址...">
                     <button id="ocr-url-btn" class="ocr-url-btn">识别</button>
                 </div>
-                <div class="ocr-progress" id="ocrUrlProgress">
-                    <div class="ocr-progress-bar" id="ocrUrlProgressBar"></div>
-                </div>
+                <div class="ocr-progress" id="ocrUrlProgress"><div class="ocr-progress-bar" id="ocrUrlProgressBar"></div></div>
                 <div id="ocr-url-result" class="qr-result">
-                    <div style="color:#8af; margin-bottom:8px;">📝 识别结果</div>
+                    <div>📝 识别结果</div>
                     <div id="ocr-url-text" class="ocr-result-text">等待识别...</div>
                 </div>
             </div>
@@ -579,21 +838,16 @@
 
     <script>
         (function(){
-            // ================= 1. 页面失焦立即改变标题 =================
+            // 粒子系统 + 主题 + 模式 (完全保留原有效果)
             const originalTitle = document.title;
             document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    document.title = '😢 你已经离开了，快回来吧！';
-                } else {
-                    document.title = originalTitle;
-                }
+                if (document.hidden) document.title = '😢 你已经离开了，快回来吧！';
+                else document.title = originalTitle;
             });
 
-            // ================= 2. 原有粒子系统 =================
             const canvas = document.getElementById('canvas-bg');
             let ctx = canvas.getContext('2d');
-            let width = window.innerWidth;
-            let height = window.innerHeight;
+            let width = window.innerWidth, height = window.innerHeight;
             let particles = [];
             const BASE_PARTICLE_COUNT = 160;
             let mouseX = width/2, mouseY = height/2;
@@ -606,9 +860,7 @@
                 auroraGreen: { hueMin: 140, hueMax: 210, bgStart: '#0a2218', bgMid: '#0c2a1e', bgEnd: '#021008', glowHue: 170, cardBorder: 'rgba(80, 220, 150, 0.6)' },
                 emberOrange: { hueMin: 20, hueMax: 70, bgStart: '#2a1508', bgMid: '#3a1e0c', bgEnd: '#1a0a02', glowHue: 40, cardBorder: 'rgba(255, 140, 50, 0.6)' }
             };
-
-            function randomRange(min, max) { return min + Math.random() * (max - min); }
-
+            function randomRange(min,max){ return min+Math.random()*(max-min); }
             class Particle {
                 constructor(x,y,vx,vy,radius,baseHue,sat,light){
                     this.x=x; this.y=y; this.vx=vx; this.vy=vy; this.radius=radius; this.baseHue=baseHue;
@@ -643,7 +895,6 @@
                     ctx.fillStyle=`hsla(${hue},85%,70%,0.3)`; ctx.fill();
                 }
             }
-
             function initParticles(){
                 const cfg=themeConfig[currentTheme];
                 const hueMin=cfg.hueMin, hueMax=cfg.hueMax;
@@ -812,223 +1063,71 @@
                 });
             }
 
-            // ========= 二维码集成模块 (保持不变) =========
-            let cameraScanner = null;
-            let cameraActive = false;
-            const qrModal = document.getElementById('qrModal');
-            const openBtn = document.getElementById('qrLiveBtn');
-            const closeBtn = document.getElementById('closeQrModal');
-            const fileInput = document.getElementById('qr-file-input');
-            const fileResultDiv = document.getElementById('file-result');
-            const cameraResultDiv = document.getElementById('camera-result');
-            const startCameraBtn = document.getElementById('startCameraBtn');
-            const stopCameraBtn = document.getElementById('stopCameraBtn');
-            
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const fileTab = document.getElementById('fileTab');
-            const cameraTab = document.getElementById('cameraTab');
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tab = btn.getAttribute('data-tab');
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    if(tab === 'file') {
-                        fileTab.classList.add('active');
-                        cameraTab.classList.remove('active');
-                        if(cameraActive) stopCamera();
-                    } else {
-                        fileTab.classList.remove('active');
-                        cameraTab.classList.add('active');
+            // 全球时钟模块
+            const mainClockDiv = document.getElementById('mainClock');
+            const timezoneSelect = document.getElementById('timezoneSelect');
+            let currentTimezone = 'auto';
+
+            function getTimeInTimezone(timezone) {
+                const now = new Date();
+                if (timezone === 'auto') {
+                    return now.toLocaleTimeString('zh-CN', { hour12: false });
+                } else {
+                    try {
+                        return now.toLocaleTimeString('zh-CN', { timeZone: timezone, hour12: false });
+                    } catch(e) {
+                        return now.toLocaleTimeString('zh-CN', { hour12: false });
                     }
+                }
+            }
+
+            function updateMainClock() {
+                mainClockDiv.textContent = getTimeInTimezone(currentTimezone);
+            }
+
+            timezoneSelect.addEventListener('change', (e) => {
+                currentTimezone = e.target.value;
+                updateMainClock();
+            });
+
+            setInterval(updateMainClock, 1000);
+            updateMainClock();
+
+            // 待办逻辑
+            const todoInput = document.getElementById('todoInput');
+            const addBtn = document.getElementById('addTodoBtn');
+            const todoList = document.getElementById('todoList');
+            function renderTodo(){
+                document.querySelectorAll('.todo-del').forEach(btn=>{
+                    btn.addEventListener('click',(e)=>{
+                        const li=btn.closest('li');
+                        if(li) li.remove();
+                    });
                 });
-            });
-            
-            fileInput.addEventListener('change', async (e) => {
-                const file = e.target.files[0];
-                if(!file) return;
-                fileResultDiv.innerText = '识别中...';
-                try {
-                    const result = await Html5Qrcode.scanFile(file, true);
-                    fileResultDiv.innerHTML = `✅ 解码结果：<strong>${result}</strong>`;
-                } catch(err) {
-                    fileResultDiv.innerText = '❌ 未发现二维码或解析失败';
-                }
-            });
-            
-            async function startCamera() {
-                if(cameraScanner) await stopCamera();
-                cameraScanner = new Html5Qrcode("qr-camera-reader");
-                try {
-                    await cameraScanner.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, (decodedText) => {
-                        cameraResultDiv.innerHTML = `🎥 实时结果：<strong>${decodedText}</strong>`;
-                    }, (err) => {});
-                    cameraActive = true;
-                    startCameraBtn.style.display = 'none';
-                    stopCameraBtn.style.display = 'inline-block';
-                    cameraResultDiv.innerText = '摄像头已启动，对准二维码...';
-                } catch(err) {
-                    cameraResultDiv.innerText = '摄像头启动失败，请检查权限';
-                }
             }
-            async function stopCamera() {
-                if(cameraScanner) {
-                    await cameraScanner.stop();
-                    cameraScanner.clear();
-                    cameraScanner = null;
-                }
-                cameraActive = false;
-                startCameraBtn.style.display = 'inline-block';
-                stopCameraBtn.style.display = 'none';
-                cameraResultDiv.innerText = '摄像头已停止';
-            }
-            startCameraBtn.addEventListener('click', startCamera);
-            stopCameraBtn.addEventListener('click', stopCamera);
-            
-            openBtn.addEventListener('click', () => {
-                qrModal.classList.add('active');
-                document.querySelector('.tab-btn[data-tab="file"]').click();
-                if(cameraActive) stopCamera();
-            });
-            closeBtn.addEventListener('click', () => {
-                qrModal.classList.remove('active');
-                if(cameraActive) stopCamera();
-            });
-            qrModal.addEventListener('click', (e) => {
-                if(e.target === qrModal) {
-                    qrModal.classList.remove('active');
-                    if(cameraActive) stopCamera();
+            addBtn.addEventListener('click',()=>{
+                const val=todoInput.value.trim();
+                if(val){
+                    const li=document.createElement('li');
+                    li.innerHTML=`${val} <button class="todo-del">✖</button>`;
+                    todoList.appendChild(li);
+                    todoInput.value='';
+                    renderTodo();
                 }
             });
+            renderTodo();
 
-            // ================= 3. OCR 图文识别模块 (新增) =================
-            const ocrModal = document.getElementById('ocrModal');
-            const ocrOpenBtn = document.getElementById('ocrBtn');
-            const ocrCloseBtn = document.getElementById('closeOcrModal');
-            const ocrFileInput = document.getElementById('ocr-file-input');
-            const ocrResultDiv = document.getElementById('ocr-result-text');
-            const ocrProgressBar = document.getElementById('ocrProgressBar');
-            const ocrProgressWrap = document.getElementById('ocrProgress');
-            
-            // URL 识别相关元素
-            const ocrUrlInput = document.getElementById('ocr-url-input');
-            const ocrUrlBtn = document.getElementById('ocr-url-btn');
-            const ocrUrlResultDiv = document.getElementById('ocr-url-text');
-            const ocrUrlProgressBar = document.getElementById('ocrUrlProgressBar');
-            const ocrUrlProgressWrap = document.getElementById('ocrUrlProgress');
-
-            // OCR 选项卡切换
-            const ocrTabBtns = document.querySelectorAll('[data-ocr-tab]');
-            const ocrUploadTab = document.getElementById('ocrUploadTab');
-            const ocrUrlTab = document.getElementById('ocrUrlTab');
-            
-            ocrTabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tab = btn.getAttribute('data-ocr-tab');
-                    ocrTabBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    if(tab === 'upload') {
-                        ocrUploadTab.classList.add('active');
-                        ocrUrlTab.classList.remove('active');
-                    } else {
-                        ocrUploadTab.classList.remove('active');
-                        ocrUrlTab.classList.add('active');
-                    }
-                });
+            // 左下卡片折叠
+            const roadmapHeader=document.getElementById('roadmapHeader');
+            const roadmapContent=document.getElementById('roadmapContent');
+            const roadmapToggle=document.getElementById('roadmapToggle');
+            let rCollapsed=false;
+            roadmapHeader.addEventListener('click',()=>{
+                rCollapsed=!rCollapsed;
+                if(rCollapsed){ roadmapContent.classList.add('collapsed'); roadmapToggle.innerHTML='▲'; }
+                else{ roadmapContent.classList.remove('collapsed'); roadmapToggle.innerHTML='▼'; }
             });
 
-            // 通用 OCR 识别函数 (中英文混合)
-            async function performOCR(imageFileOrBlob, resultElement, progressBarElement, progressWrapElement) {
-                if (!imageFileOrBlob) return false;
-                // 显示进度条
-                if (progressWrapElement) progressWrapElement.style.display = 'block';
-                if (progressBarElement) progressBarElement.style.width = '0%';
-                resultElement.innerText = '识别中，请稍候...';
-                
-                try {
-                    // 使用 Tesseract.js 识别，支持中英文混合识别
-                    const { data: { text } } = await Tesseract.recognize(
-                        imageFileOrBlob,
-                        'chi_sim+eng',  // 简体中文 + 英文混合识别
-                        {
-                            logger: (m) => {
-                                if (progressBarElement && m.status === 'recognizing text') {
-                                    const percent = Math.round(m.progress * 100);
-                                    progressBarElement.style.width = `${percent}%`;
-                                }
-                            }
-                        }
-                    );
-                    if (progressWrapElement) progressWrapElement.style.display = 'none';
-                    if (text && text.trim()) {
-                        resultElement.innerText = text.trim();
-                        return true;
-                    } else {
-                        resultElement.innerText = '未识别到任何文字，请尝试更清晰的图片';
-                        return false;
-                    }
-                } catch (error) {
-                    console.error('OCR识别失败:', error);
-                    if (progressWrapElement) progressWrapElement.style.display = 'none';
-                    resultElement.innerText = '识别失败，请检查图片格式或重试';
-                    return false;
-                }
-            }
-
-            // 文件上传识别
-            ocrFileInput.addEventListener('change', async (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                await performOCR(file, ocrResultDiv, ocrProgressBar, ocrProgressWrap);
-                ocrFileInput.value = ''; // 清空，允许重复上传同一文件
-            });
-
-            // URL 识别
-            async function recognizeFromUrl() {
-                const url = ocrUrlInput.value.trim();
-                if (!url) {
-                    ocrUrlResultDiv.innerText = '请输入图片链接';
-                    return;
-                }
-                ocrUrlResultDiv.innerText = '加载图片中...';
-                try {
-                    // 通过 fetch 获取图片 Blob
-                    const response = await fetch(url);
-                    if (!response.ok) throw new Error('图片加载失败');
-                    const blob = await response.blob();
-                    if (!blob.type.startsWith('image/')) {
-                        ocrUrlResultDiv.innerText = '链接不是有效的图片格式';
-                        return;
-                    }
-                    await performOCR(blob, ocrUrlResultDiv, ocrUrlProgressBar, ocrUrlProgressWrap);
-                } catch (err) {
-                    ocrUrlResultDiv.innerText = '图片加载失败，请检查链接是否可访问（注意跨域限制）';
-                    if (ocrUrlProgressWrap) ocrUrlProgressWrap.style.display = 'none';
-                }
-            }
-
-            ocrUrlBtn.addEventListener('click', recognizeFromUrl);
-            ocrUrlInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') recognizeFromUrl();
-            });
-
-            // 打开/关闭 OCR 模态框
-            ocrOpenBtn.addEventListener('click', () => {
-                ocrModal.classList.add('active');
-                // 重置到上传选项卡
-                document.querySelector('[data-ocr-tab="upload"]').click();
-                // 如果摄像头开着，关闭
-                if (cameraActive) stopCamera();
-            });
-            ocrCloseBtn.addEventListener('click', () => {
-                ocrModal.classList.remove('active');
-            });
-            ocrModal.addEventListener('click', (e) => {
-                if (e.target === ocrModal) {
-                    ocrModal.classList.remove('active');
-                }
-            });
-
-            // 启动所有
             function start(){
                 resizeCanvas();
                 setupUI();
@@ -1041,6 +1140,104 @@
                 animate();
             }
             start();
+        })();
+    </script>
+
+    <!-- 激活二维码与OCR功能 -->
+    <script>
+        (function activateExtensions(){
+            const qrModal=document.getElementById('qrModal'); 
+            const ocrModal=document.getElementById('ocrModal');
+            const openQr=document.getElementById('qrLiveBtn'); 
+            const openOcr=document.getElementById('ocrBtn');
+            const closeQr=document.getElementById('closeQrModal'); 
+            const closeOcr=document.getElementById('closeOcrModal');
+            
+            // 标签切换 (二维码)
+            document.querySelectorAll('#qrModal .tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabName = btn.getAttribute('data-tab');
+                    document.querySelectorAll('#qrModal .tab-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelectorAll('#qrModal .tab-pane').forEach(p => p.classList.remove('active'));
+                    document.getElementById(tabName === 'file' ? 'fileTab' : 'cameraTab').classList.add('active');
+                });
+            });
+            // OCR标签切换
+            document.querySelectorAll('#ocrModal .tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabName = btn.getAttribute('data-ocr-tab');
+                    document.querySelectorAll('#ocrModal .tab-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelectorAll('#ocrModal .tab-pane').forEach(p => p.classList.remove('active'));
+                    document.getElementById(tabName === 'upload' ? 'ocrUploadTab' : 'ocrUrlTab').classList.add('active');
+                });
+            });
+
+            if(openQr) openQr.onclick=()=>qrModal.classList.add('active');
+            if(closeQr) closeQr.onclick=()=>qrModal.classList.remove('active');
+            if(openOcr) openOcr.onclick=()=>ocrModal.classList.add('active');
+            if(closeOcr) closeOcr.onclick=()=>ocrModal.classList.remove('active');
+            [qrModal, ocrModal].forEach(m=>{ if(m) m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('active'); }); });
+
+            // 文件二维码扫描
+            const fileInput=document.getElementById('qr-file-input');
+            const fileResult=document.getElementById('file-result');
+            if(fileInput && typeof Html5Qrcode !== 'undefined'){
+                fileInput.addEventListener('change',async(e)=>{
+                    const file=e.target.files[0]; if(!file) return;
+                    fileResult.innerText='识别中...';
+                    try{ const res=await Html5Qrcode.scanFile(file,true); fileResult.innerHTML=`✅ 解码结果：<strong>${res}</strong>`; }
+                    catch(e){ fileResult.innerText='❌ 未发现二维码'; }
+                });
+            }
+
+            // 摄像头扫描
+            let camScanner=null; 
+            const startBtn=document.getElementById('startCameraBtn'),stopBtn=document.getElementById('stopCameraBtn'),cameraRes=document.getElementById('camera-result');
+            if(startBtn && typeof Html5Qrcode !== 'undefined'){
+                startBtn.onclick=async()=>{
+                    if(camScanner) await camScanner.stop();
+                    camScanner=new Html5Qrcode("qr-camera-reader");
+                    try{ 
+                        await camScanner.start({facingMode:"environment"},{fps:10,qrbox:250},(txt)=>{ cameraRes.innerHTML=`🎥 实时结果：<strong>${txt}</strong>`; },()=>{}); 
+                        startBtn.style.display='none'; stopBtn.style.display='inline-block'; 
+                    } catch(e){ cameraRes.innerText='摄像头启动失败'; }
+                };
+                stopBtn.onclick=async()=>{ 
+                    if(camScanner){ await camScanner.stop(); camScanner.clear(); camScanner=null; } 
+                    startBtn.style.display='inline-block'; stopBtn.style.display='none'; cameraRes.innerText='摄像头已停止'; 
+                };
+            }
+
+            // OCR 上传识别
+            const ocrFile=document.getElementById('ocr-file-input'), ocrText=document.getElementById('ocr-result-text'), ocrProgress=document.getElementById('ocrProgress'), ocrBar=document.getElementById('ocrProgressBar');
+            if(ocrFile && typeof Tesseract !== 'undefined'){
+                ocrFile.addEventListener('change',async(e)=>{
+                    const file=e.target.files[0]; if(!file) return;
+                    ocrText.innerText='识别中...'; if(ocrProgress) ocrProgress.style.display='block';
+                    try{ 
+                        const {data:{text}}=await Tesseract.recognize(file,'chi_sim+eng',{logger:m=>{ if(ocrBar && m.status==='recognizing text') ocrBar.style.width=`${Math.round(m.progress*100)}%`; }});
+                        ocrText.innerText=text.trim()||'未识别到文字'; 
+                    } catch(err){ ocrText.innerText='识别失败'; }
+                    if(ocrProgress) ocrProgress.style.display='none'; if(ocrBar) ocrBar.style.width='0%';
+                });
+            }
+
+            // OCR URL识别
+            const ocrUrlBtn=document.getElementById('ocr-url-btn'), ocrUrlInput=document.getElementById('ocr-url-input'), ocrUrlText=document.getElementById('ocr-url-text'), ocrUrlProgress=document.getElementById('ocrUrlProgress'), ocrUrlBar=document.getElementById('ocrUrlProgressBar');
+            if(ocrUrlBtn && typeof Tesseract !== 'undefined'){
+                ocrUrlBtn.onclick=async()=>{
+                    const url=ocrUrlInput.value.trim(); if(!url){ ocrUrlText.innerText='请输入链接'; return; }
+                    ocrUrlText.innerText='加载图片...'; if(ocrUrlProgress) ocrUrlProgress.style.display='block';
+                    try{ 
+                        const res=await fetch(url); if(!res.ok)throw new Error(); const blob=await res.blob();
+                        const {data:{text}}=await Tesseract.recognize(blob,'chi_sim+eng',{logger:m=>{ if(ocrUrlBar && m.status==='recognizing text') ocrUrlBar.style.width=`${Math.round(m.progress*100)}%`; }});
+                        ocrUrlText.innerText=text.trim()||'未识别到文字'; 
+                    } catch(e){ ocrUrlText.innerText='加载或识别失败，注意跨域'; }
+                    if(ocrUrlProgress) ocrUrlProgress.style.display='none'; if(ocrUrlBar) ocrUrlBar.style.width='0%';
+                };
+            }
         })();
     </script>
 </body>

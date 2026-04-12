@@ -723,6 +723,7 @@
                     <button data-theme="neonPurple" class="theme-btn active">霓虹幻紫</button>
                     <button data-theme="auroraGreen" class="theme-btn">极光青绿</button>
                     <button data-theme="emberOrange" class="theme-btn">烈焰橙红</button>
+					<button data-theme="rainbow" class="theme-btn">彩虹变幻</button>
                 </div>
             </div>
             <div class="ctrl-group">
@@ -858,7 +859,8 @@
             const themeConfig = {
                 neonPurple: { hueMin: 210, hueMax: 330, bgStart: '#0a0a2a', bgMid: '#12103a', bgEnd: '#020014', glowHue: 260, cardBorder: 'rgba(100, 150, 255, 0.5)' },
                 auroraGreen: { hueMin: 140, hueMax: 210, bgStart: '#0a2218', bgMid: '#0c2a1e', bgEnd: '#021008', glowHue: 170, cardBorder: 'rgba(80, 220, 150, 0.6)' },
-                emberOrange: { hueMin: 20, hueMax: 70, bgStart: '#2a1508', bgMid: '#3a1e0c', bgEnd: '#1a0a02', glowHue: 40, cardBorder: 'rgba(255, 140, 50, 0.6)' }
+                emberOrange: { hueMin: 20, hueMax: 70, bgStart: '#2a1508', bgMid: '#3a1e0c', bgEnd: '#1a0a02', glowHue: 40, cardBorder: 'rgba(255, 140, 50, 0.6)' },
+				rainbow: { hueMin: 0,hueMax: 360,bgStart: '#0a0a1a',bgMid: '#151030',bgEnd: '#050510',glowHue: 200,cardBorder: 'rgba(255, 200, 200, 0.7)'}
             };
             function randomRange(min,max){ return min+Math.random()*(max-min); }
             class Particle {
